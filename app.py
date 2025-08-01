@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+
+from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -22,5 +23,9 @@ def projects():
 def contact():
     return render_template('contact.html')
 
+@app.route('/download_resume')
+def download_resume():
+    return send_from_directory('static/', 'SamuelOgunlusi-Resume.pdf', as_attachment=True)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # Remove for Vercel deployment
