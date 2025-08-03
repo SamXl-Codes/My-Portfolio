@@ -1,142 +1,765 @@
-{% extends "base.html" %}
-{% block title %}Samuel Ogunlusi - Projects{% endblock %}
-{% block content %}
-<section class="section">
-    <h2>Featured Projects</h2>
-    <div class="projects-grid">
-        <div class="project-card" onclick="openModal('modal1')">
-            <h3>Network Infrastructure Security & Design</h3>
-            <p>Architected multi-site LAN/WAN with Cisco routers, switches, VLANs, and QoS policies.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">Cisco Packet Tracer</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Ogunlusi - Portfolio</title>
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display?styles=59278,59279,59280" rel="stylesheet" media="all" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/particle.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a192f;
+            color: #ccd6f6;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .header-container {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 10px 20px;
+            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .header-container:hover { transform: scale(1.02); }
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 40px; font-weight: 700;
+            color: #64ffda; text-decoration: none;
+            transition: color 0.3s ease;
+            margin-left: 20px;
+        }
+        .logo:hover { color: #00ff95; }
+        .nav-menu {
+            display: flex; list-style: none; gap: 40px;
+            margin-right: 20px;
+        }
+        .nav-menu li a {
+            color: #ccd6f6; text-decoration: none;
+            font-size: 15px; font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-menu li a:hover { color: #64ffda; }
+        .burger-menu {
+            display: none; position: fixed; top: 10px; right: 20px;
+            z-index: 1001; background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(20px); border-radius: 50%;
+            width: 50px; height: 50px; justify-content: center;
+            align-items: center; cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .burger-menu:hover { background: rgba(100, 255, 218, 0.2); }
+        .burger-lines {
+            width: 22px; height: 2px; background: #64ffda;
+            position: relative; transition: all 0.3s ease;
+        }
+        .burger-lines::before, .burger-lines::after {
+            content: ''; position: absolute;
+            width: 22px; height: 2px; background: #64ffda;
+            transition: all 0.3s ease;
+        }
+        .burger-lines::before { top: -7px; }
+        .burger-lines::after { top: 7px; }
+        .burger-menu.active .burger-lines { background: transparent; }
+        .burger-menu.active .burger-lines::before {
+            transform: rotate(45deg); top: 0;
+        }
+        .burger-menu.active .burger-lines::after {
+            transform: rotate(-45deg); top: 0;
+        }
+        .mobile-nav {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(20px); z-index: 999;
+            justify-content: center; align-items: center; 
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        .mobile-nav.active { display: flex; }
+        .mobile-nav-menu { list-style: none; text-align: center; padding: 20px; }
+        .mobile-nav-menu li { margin: 15px 0; }
+        .mobile-nav-menu li a {
+            color: #ccd6f6; text-decoration: none;
+            font-size: 28px; font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .mobile-nav-menu li a:hover { color: #64ffda; }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a192f 0%, #1a2a44 100%);
+            padding: 80px 20px 20px;
+            overflow: hidden;
+        }
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: -20px;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .profile-image {
+            width: 250px; height: 250px; border-radius: 50%;
+            margin: 0 auto 20px; background: #112240;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease; overflow: hidden;
+            border: 2px solid #64ffda;
+        }
+        .profile-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            border-radius: 50%; border: 2px solid #64ffda;
+        }
+        .profile-image:hover { transform: scale(1.05); }
+        .hero h1 {
+            font-size: 56px; font-weight: 700; margin-bottom: 15px;
+            letter-spacing: -1.5px; color: #e6f1ff;
+        }
+        .hero h2 {
+            font-size: 28px; font-weight: 400; margin-bottom: 20px;
+            color: #a8b2d1;
+        }
+        .hero p {
+            font-size: 20px; max-width: 700px; margin: 0 auto 20px;
+            color: #8892b0;
+        }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; padding: 10px 0; }
+            .logo { margin: 5px auto; transform: translateX(0); left: 0; }
+            .nav-menu { display: none; }
+            .burger-menu { display: flex; }
+            .hero {
+                padding: 60px 10px 10px;
+                min-height: 100vh;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+            }
+            .hero-content {
+                padding-top: 0;
+                margin-top: -40px;
+                text-align: center;
+                width: 90%;
+            }
+            .hero h1 { font-size: 40px; }
+            .hero h2 { font-size: 22px; }
+            .hero p { font-size: 16px; }
+            .profile-image {
+                width: 180px; height: 180px; margin: 0 auto 15px;
+            }
+            .experience-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .experience-header {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .experience-logo img {
+                width: 60px; height: 60px;
+                margin-bottom: 10px;
+            }
+            .experience-title h3 { font-size: 20px; }
+            .experience-company { font-size: 14px; }
+            .experience-date { font-size: 12px; }
+            .experience-description li {
+                font-size: 14px;
+                padding-left: 15px;
+            }
+        }
+        .section {
+            padding: 40px 20px; max-width: 1200px;
+            margin: 0 auto; position: relative; z-index: 1;
+        }
+        .section h2 {
+            font-size: 42px; font-weight: 700;
+            margin-bottom: 40px; text-align: center;
+            letter-spacing: -1.5px; color: #ccd6f6;
+        }
+        .animate-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .animate-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about-text h3 { font-size: 28px; font-weight: 700; margin-bottom: 15px; color: #e6f1ff; }
+        .about-text p { font-size: 16px; margin-bottom: 15px; color: #8892b0; }
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px; margin-top: 30px;
+        }
+        .skill-category h4 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #ccd6f6; }
+        .skill-list { list-style: none; }
+        .skill-list li { padding: 6px 0; font-size: 15px; display: flex; align-items: center; }
+        .skill-list li::before { content: '✔'; margin-right: 10px; color: #64ffda; }
+        .experience-item {
+            margin-bottom: 40px; padding: 30px;
+            border-radius: 20px; background: #112240;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            display: flex; align-items: flex-start;
+        }
+        .experience-item:hover { transform: translateY(-5px); }
+        .experience-header {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 20px;
+            width: 100%;
+        }
+        .experience-logo img {
+            width: 80px; height: 80px; object-fit: contain; border-radius: 10px;
+            background: #1e2a44; padding: 5px;
+        }
+        .experience-title h3 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #e6f1ff; }
+        .experience-company { font-size: 16px; font-weight: 500; color: #ccd6f6; }
+        .experience-date { font-size: 14px; text-align: right; color: #8892b0; }
+        .experience-description { list-style: none; }
+        .experience-description li {
+            padding: 6px 0; font-size: 15px;
+            position: relative; padding-left: 20px;
+            color: #ccd6f6;
+        }
+        .experience-description li::before {
+            content: '→'; position: absolute; left: 0;
+            color: #64ffda;
+        }
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: #112240; border-radius: 20px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        .project-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #e6f1ff; }
+        .project-card p { font-size: 15px; line-height: 1.7; margin-bottom: 15px; color: #8892b0; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-badge {
+            background: #1e2a44; color: #ccd6f6;
+            font-size: 13px; padding: 5px 10px;
+            border-radius: 15px; display: flex;
+            align-items: center; gap: 6px;
+        }
+        .contact-info { text-align: center; max-width: 700px; margin: 0 auto; }
+        .contact-info p { font-size: 16px; margin-bottom: 15px; color: #8892b0; }
+        .contact-links { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+        .contact-link {
+            display: flex; align-items: center;
+            padding: 12px 30px; background: #112240;
+            color: #64ffda; text-decoration: none;
+            border: 1px solid #64ffda; border-radius: 30px;
+            font-weight: 600; font-size: 16px;
+            transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+        }
+        .contact-link:hover {
+            background: #64ffda; color: #0a192f;
+            transform: translateY(-3px);
+        }
+        .contact-link svg { width: 20px; height: 20px; margin-right: 8px; fill: #64ffda; }
+        .modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8);
+            z-index: 10000; justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: #112240; padding: 15px;
+            border-radius: 10px; max-width: 600px;
+            text-align: center; color: #ccd6f6;
+        }
+        .close { color: #64ffda; font-size: 24px; cursor: pointer; }
+        .certifications-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px; margin-top: 15px;
+        }
+        .certification-card {
+            background: #112240; border-radius: 20px;
+            padding: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            display: flex; align-items: center;
+        }
+        .certification-card:hover { transform: translateY(-5px); }
+        .certification-card img { width: 80px; height: auto; margin-right: 15px; }
+        .certification-details h3 { font-size: 18px; font-weight: 700; color: #e6f1ff; margin-bottom: 8px; }
+        .certification-details p { font-size: 14px; color: #8892b0; margin-bottom: 8px; }
+        .certification-details ul { list-style: none; }
+        .certification-details li { font-size: 14px; color: #ccd6f6; padding: 4px 0; }
+        .certification-details li::before { content: '→'; color: #64ffda; margin-right: 8px; }
+        html { scroll-behavior: smooth; }
+        .parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+    </style>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="header-container">
+        <a href="#home" class="logo">SamXCybersec</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="burger-menu" onclick="toggleMenu()">
+        <div class="burger-lines"></div>
+    </div>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-menu">
+            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#certifications" onclick="toggleMenu()">Certifications</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <section id="home" class="hero parallax animate-section">
+        <div class="hero-content">
+            <div class="profile-image">
+                <img src="/static/images/profile.jpg" alt="Samuel Ogunlusi">
+            </div>
+            <h1>Samuel Ogunlusi</h1>
+            <h2>Cybersecurity Specialist</h2>
+            <p>I am an IT professional specializing in cybersecurity operations and AI-driven solutions, leveraging Python, Bash, and PowerShell for automation, threat detection, and network security enhancements.</p>
+        </div>
+    </section>
+
+    <section id="about" class="section animate-section">
+        <h2>About</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Hello, I’m Sam</h3>
+                <p>I hold a Bachelor of Science in Computer Science from Caleb University (2020–2024) with Upper Second-Class Honors. I specialize in AI-powered cybersecurity, network security, and cloud infrastructure, delivering innovative solutions to protect digital environments.</p>
+                <a href="{{ url_for('download_resume') }}" class="contact-link" download>Download My Resume</a>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <ul class="skill-list">
+                        <li>IT Support</li>
+                        <li>Networking</li>
+                        <li>Firewall Management</li>
+                        <li>Cloud Security</li>
+                        <li>Virtualization</li>
+                        <li>Linux System Administration</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>PowerShell</li>
+                        <li>Bash Scripting</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools</h4>
+                    <ul class="skill-list">
+                        <li>Wireshark</li>
+                        <li>Splunk</li>
+                        <li>Security Onion</li>
+                        <li>Cisco Packet Tracer</li>
+                        <li>OPNSense</li>
+                        <li>SolarWinds NPM</li>
+                        <li>Active Directory</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Platforms</h4>
+                    <ul class="skill-list">
+                        <li>Windows Server/Client OS</li>
+                        <li>Linux OS (Ubuntu, Kali, CentOS)</li>
+                        <li>MacOS</li>
+                        <li>Microsoft Azure</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Soft Skills</h4>
+                    <ul class="skill-list">
+                        <li>Teamwork</li>
+                        <li>Adaptability</li>
+                        <li>Continuous Learning</li>
+                        <li>Effective Communication</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal2')">
-            <h3>Phishing Attack Simulation</h3>
-            <p>Deployed GoPhish to simulate phishing attacks and analyzed user response rates.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">GoPhish</div>
+    </section>
+
+    <section id="experience" class="section animate-section">
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <div class="experience-header">
+                <div class="experience-logo">
+                    <img src="/static/images/Niit.logo.png" alt="NIIT Fortesoft Systems Logo">
+                </div>
+                <div class="experience-title">
+                    <h3>Networking & Cybersecurity Trainee</h3>
+                    <div class="experience-company">NIIT Fortesoft Systems, Lagos, Nigeria</div>
+                </div>
+                <div class="experience-date">September 2024 – Present</div>
+            </div>
+            <ul class="experience-description">
+                <li>Configured and managed Cisco and MikroTik routers, switches, VLANs, and firewalls.</li>
+                <li>Designed and maintained scalable LAN/WAN networks for high availability.</li>
+                <li>Monitored network traffic and logs using security monitoring tools.</li>
+                <li>Developed Python tools for SIEM integration and automated threat detection.</li>
+                <li>Deployed and secured virtual machines on Microsoft Azure.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <div class="experience-header">
+                <div class="experience-logo">
+                    <img src="/static/images/enl_consortium.png" alt="ENL Consortium Ltd Logo">
+                </div>
+                <div class="experience-title">
+                    <h3>IT Support Technician</h3>
+                    <div class="experience-company">ENL Consortium Ltd, FCT Abuja, Nigeria</div>
+                </div>
+                <div class="experience-date">May 2023 – November 2023</div>
+            </div>
+            <ul class="experience-description">
+                <li>Configured and maintained printers, scanners, and peripheral devices.</li>
+                <li>Installed and maintained Windows, MacOS, and Linux systems.</li>
+                <li>Provided technical support for hardware, software, and network issues.</li>
+                <li>Managed DHCP, DNS, VPN, and TCP/IP protocols.</li>
+                <li>Automated IT workflows using PowerShell.</li>
+                <li>Assisted in Active Directory user management.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="section animate-section">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openModal('modal1')">
+                <h3>Network Infrastructure Security & Design</h3>
+                <p>Architected multi-site LAN/WAN with Cisco routers, switches, VLANs, and QoS policies.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Cisco Packet Tracer</div>
+                    <div class="tech-badge">Subnetting</div>
+                    <div class="tech-badge">VLAN Configuration</div>
+                    <div class="tech-badge">NAT, ACL, STP</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal2')">
+                <h3>Email Phishing Attack Analysis</h3>
+                <p>Analyzed email phishing attacks using various tools and techniques.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Kali Linux</div>
+                    <div class="tech-badge">Thunderbird</div>
+                    <div class="tech-badge">Virus Total API</div>
+                    <div class="tech-badge">Yara Rules</div>
+                    <div class="tech-badge">Phishing Honeypot</div>
+                    <div class="tech-badge">python</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal3')">
+                <h3>Home Cybersecurity Lab Infrastructure</h3>
+                <p>Built a test environment with pfSense, Kali Linux, and Security Onion.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">pfSense</div>
+                    <div class="tech-badge">Kali Linux</div>
+                    <div class="tech-badge">Security Onion</div>
+                    <div class="tech-badge">VMware</div>
+                    <div class="tech-badge">Splunk</div>
+                    <div class="tech-badge">Wireshark</div>
+                    <div class="tech-badge">Nmap</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal4')">
+                <h3>Cloud Infrastructure Deployment & Security</h3>
+                <p>Set up secure Azure environments with VMs, IAM, MFA, and RBAC.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Azure</div>
+                    <div class="tech-badge">Azure Security center</div>
+                    <div class="tech-badge">Powershell</div>
+                    <div class="tech-badge">Azure Active Directory</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal5')">
+                <h3>Web Application Penetration Testing</h3>
+                <p>Tested DVWA for SQL injection and XSS using Burp Suite.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Burp Suite</div>
+                    <div class="tech-badge">Kali Linux</div>
+                    <div class="tech-badge">OWASP ZAP</div>
+                    <div class="tech-badge">Metasploit</div>
+                    <div class="tech-badge">SQLMap</div>
+                    <div class="tech-badge">Nmap</div>
+                    <div class="tech-badge">Nikto</div>
+                    <div class="tech-badge">W3AF</div>
+                    <div class="tech-badge">DVWA</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal6')">
+                <h3>Active Directory Infrastructure & Automation</h3>
+                <p>Configured AD and GPOs, automated user creation with PowerShell.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Windows Server 2022</div>
+                    <div class="tech-badge">PowerShell</div>
+                    <div class="tech-badge">Active Directory Domain Services</div>
+                    <div class="tech-badge">Group Policy Management</div>
+                    <div class="tech-badge">VMware</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal7')">
+                <h3>AI-Powered Threat Detection System</h3>
+                <p>Developed an AI model using TensorFlow to detect anomalies in network traffic.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">TensorFlow</div>
+                    <div class="tech-badge">Python</div>
+                    <div class="tech-badge">Streamlit</div>
+                    <div class="tech-badge">Pandas</div>
+                    <div class="tech-badge">NumPy</div>
+                    <div class="tech-badge">Scikit-learn</div>
+                    <div class="tech-badge">Matplotlib</div>
+                    <div class="tech-badge">Kaggle</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal8')">
+                <h3>AI-Powered Phishing Detection & Prevention System</h3>
+                <p>Built an AI system to analyze email content and block phishing attempts.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">NLP</div>
+                    <div class="tech-badge">Python</div>
+                    <div class="tech-badge">Scikit-learn</div>
+                    <div class="tech-badge">Streamlit</div>
+                    <div class="tech-badge">Pandas</div>
+                    <div class="tech-badge">Kaggle</div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('modal9')">
+                <h3>Automated Incident Response with AI</h3>
+                <p>Created an AI-driven system for real-time incident response and mitigation.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">AI/ML</div>
+                    <div class="tech-badge">Splunk</div>
+                    <div class="tech-badge">Flask</div>
+                    <div class="tech-badge">REST APIs</div>
+                    <div class="tech-badge">Python</div>
+                </div>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal3')">
-            <h3>Home Cybersecurity Lab Infrastructure</h3>
-            <p>Built a test environment with pfSense, Kali Linux, and Security Onion.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">pfSense</div>
-                <div class="tech-badge">Kali Linux</div>
-                <div class="tech-badge">Security Onion</div>
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal1')">&times;</span>
+                <h3>Network Infrastructure Security & Design</h3>
+                <p>Architected a scalable multi-site LAN/WAN topology using Cisco routers and switches. Implemented VLAN segmentation, trunking, inter-VLAN routing, ACLs, NAT, DHCP, and QoS policies. Designed for both performance optimization and access control.</p>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal4')">
-            <h3>Cloud Infrastructure Deployment & Security</h3>
-            <p>Set up secure Azure environments with VMs, IAM, MFA, and RBAC.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">Azure</div>
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal2')">&times;</span>
+                <h3>Email Phishing Attack Analysis</h3>
+                <p>Analyzed phishing emails collected through a phishing pot, containing .eml samples of real-world attacks. Parsed and inspected headers, payload links, and attachments to extract IOCs and classify attack types. Developed detection rules and performed risk analysis on common phishing techniques.</p>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal5')">
-            <h3>Web Application Penetration Testing</h3>
-            <p>Tested DVWA for SQL injection and XSS using Burp Suite.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">Burp Suite</div>
-                <div class="tech-badge">DVWA</div>
+        <div id="modal3" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal3')">&times;</span>
+                <h3>Home Cybersecurity Lab Infrastructure</h3>
+                <p>Built an isolated cybersecurity lab using virtualization to simulate enterprise environments. Included pfSense as a firewall/router, Security Onion for monitoring, and Kali Linux for offensive testing. Used port mirroring and logging to observe attacks in real time.</p>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal6')">
-            <h3>Active Directory Infrastructure & Automation</h3>
-            <p>Configured AD and GPOs, automated user creation with PowerShell.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">Windows Server</div>
-                <div class="tech-badge">PowerShell</div>
+        <div id="modal4" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal4')">&times;</span>
+                <h3>Cloud Infrastructure Deployment & Security</h3>
+                <p>Deployed a secure Azure cloud environment with role-based access control (RBAC), MFA, and secure networking. Automated provisioning of virtual machines, implemented network security groups, key vault, and monitored with Azure Security Center.</p>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal7')">
-            <h3>AI-Powered Threat Detection System</h3>
-            <p>Developed an AI model using TensorFlow to detect anomalies in network traffic.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">TensorFlow</div>
-                <div class="tech-badge">Python</div>
+        <div id="modal5" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal5')">&times;</span>
+                <h3>Web Application Penetration Testing</h3>
+                <p>Performed black-box testing on DVWA to identify and exploit web vulnerabilities such as SQL Injection, XSS, and CSRF. Used manual techniques and automated tools to document findings and simulate attack vectors</p>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal8')">
-            <h3>AI-Driven Phishing Prevention</h3>
-            <p>Built an AI system to analyze email content and block phishing attempts.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">NLP</div>
-                <div class="tech-badge">Python</div>
+        <div id="modal6" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal6')">&times;</span>
+                <h3>Active Directory Infrastructure & Automation</h3>
+                <p>Configured a Windows Server environment as a Domain Controller. Created OUs, users, and security groups. Applied Group Policy Objects (GPOs) for password policies, logon restrictions, and software restrictions. Automated tasks using PowerShell scripting.</p>
             </div>
         </div>
-        <div class="project-card" onclick="openModal('modal9')">
-            <h3>Automated Incident Response with AI</h3>
-            <p>Created an AI-driven system for real-time incident response and mitigation.</p>
-            <div class="tech-stack">
-                <div class="tech-badge">AI/ML</div>
-                <div class="tech-badge">Splunk</div>
+        <div id="modal7" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal7')">&times;</span>
+                <h3>AI-Powered Threat Detection System</h3>
+                <p>Trained a neural network using TensorFlow to identify network anomalies in traffic flow data. Modeled malicious vs normal behavior based on packet metadata and time-series data. Deployed on Streamlit for live prediction visualization.</p>
             </div>
         </div>
-    </div>
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal1')">&times;</span>
-            <h3>Network Infrastructure Security & Design</h3>
-            <p>Architected multi-site LAN/WAN with Cisco routers, switches, VLANs, and QoS policies. Applied access control and NAT settings.</p>
+        <div id="modal8" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal8')">&times;</span>
+                <h3>AI-Powered Phishing Detection & Prevention System</h3>
+                <p>Built an NLP model to classify email content as phishing or legitimate. Trained on a labeled dataset using TF-IDF and BERT for deep contextual understanding. Integrated with a web app for real-time email checks.</p>
+            </div>
         </div>
-    </div>
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <h3>Phishing Attack Simulation</h3>
-            <p>Deployed GoPhish to simulate phishing attacks, customized email templates, and analyzed compromised credentials.</p>
+        <div id="modal9" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal9')">&times;</span>
+                <h3>Automated Incident Response with AI</h3>
+                <p>Developed an AI-driven engine that monitors security logs and triggers automated responses based on threat severity. Integrated with Splunk to detect patterns and initiate actions such as account lockdown or IP blocking.</p>
+            </div>
         </div>
-    </div>
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal3')">&times;</span>
-            <h3>Home Cybersecurity Lab Infrastructure</h3>
-            <p>Built a test environment with pfSense, Kali Linux, and Security Onion for network segmentation and defense.</p>
+    </section>
+
+    <section id="certifications" class="section animate-section">
+        <h2>Certifications</h2>
+        <div class="certifications-grid">
+            <div class="certification-card">
+                <img src="/static/images/cisco_cyberops.png" alt="Cisco CyberOps Associate Logo">
+                <div class="certification-details">
+                    <h3>Cisco Certified CyberOps Associate</h3>
+                    <p>March 2025</p>
+                    <ul>
+                        <li>Learned cybersecurity operations, incident response, and security monitoring techniques.</li>
+                        <li>Worked with SIEM tools, IDS/IPS, and threat detection methodologies.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="certification-card">
+                <img src="/static/images/cisco_ccna.png" alt="Cisco CCNA Logo">
+                <div class="certification-details">
+                    <h3>Cisco Certified Network Associate (CCNA)</h3>
+                    <p>April 2025</p>
+                    <ul>
+                        <li>Gained expertise in network configuration, routing, switching, and troubleshooting using Cisco devices.</li>
+                        <li>Mastered IP addressing, subnetting, VLANs, and network security fundamentals.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="certification-card">
+                <img src="/static/images/google_python.png" alt="Google Python Logo">
+                <div class="certification-details">
+                    <h3>Using Python to Interact with Operating Systems (Google)</h3>
+                    <p>January 2023</p>
+                    <ul>
+                        <li>Developed Python scripting skills for system automation and administration.</li>
+                        <li>Worked with file management, process handling, and system monitoring using Python.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="certification-card">
+                <img src="/static/images/comptia_sec+.png" alt="CompTIA Security+ Logo">
+                <div class="certification-details">
+                    <h3>CompTIA Sec+ Career Pathway</h3>
+                    <p>October 2024</p>
+                    <ul>
+                        <li>Gained foundational knowledge in system and network security, threat detection, and risk management.</li>
+                        <li>Developed hands-on skills in identifying vulnerabilities, securing networks, and responding to cybersecurity incidents.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="certification-card">
+                <img src="/static/images/comptia_net+.png" alt="CompTIA Network+ Logo">
+                <div class="certification-details">
+                    <h3>CompTIA Network Analytics Career Pathway</h3>
+                    <p>February 2024</p>
+                    <ul>
+                        <li>Learned network traffic analysis, anomaly detection, and network security monitoring.</li>
+                        <li>Developed skills in analyzing network logs and identifying cybersecurity threats.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="certification-card">
+                <img src="/static/images/IBM.cloud.png" alt="IBM Cloud Fundamentals Logo">
+                <div class="certification-details">
+                    <h3>Fundamentals of Cloud Computing (IBM)</h3>
+                    <p>March 2022</p>
+                    <ul>
+                        <li>Gained an understanding of cloud computing models, virtualization, and cloud security.</li>
+                        <li>Explored Azure, Oracle Cloud, and cloud-based infrastructure management.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="modal4" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal4')">&times;</span>
-            <h3>Cloud Infrastructure Deployment & Security</h3>
-            <p>Set up secure Azure environments with VMs, IAM policies, MFA, RBAC, and cloud monitoring.</p>
+    </section>
+
+    <section id="contact" class="section animate-section">
+        <h2>Let's Connect</h2>
+        <div class="contact-info">
+            <p>I'm always open to new opportunities, innovative collaborations, and meaningful conversations in tech and cybersecurity. Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:samuelogunlusi21@gmail.com" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l11.985-8.57A2 2 0 0022 3H2a2 2 0 00-1.985 1.143L12 12.713zm0 2.573L.15 6.586A2 2 0 000 8v12a2 2 0 002 2h20a2 2 0 002-2V8a2 2 0 00-.15-1.414L12 15.286z"/></svg>
+                    Email Me
+                </a>
+                <a href="tel:+2349075592288" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1.45 1 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.2 2.2z"/></svg>
+                    Call Me
+                </a>
+                <a href="https://www.linkedin.com/in/samuel-ogunlusi" class="contact-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.012-3.05-1.862-3.05-1.863 0-2.148 1.452-2.148 2.956v5.698h-3v-11h2.879v1.548h.041c.398-.753 1.369-1.546 2.819-1.546 3.016 0 3.573 1.985 3.573 4.565v6.433z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/SamXl-Codes" class="contact-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.62.07-.61.07-.61 1.02.07 1.56 1.05 1.56 1.05.91 1.56 2.39 1.11 2.97.85.09-.66.35-1.11.63-1.36-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.26.1-2.63 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.52.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.38.1 2.63.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.56.94.56 1.53v2.27c0 .27.16.58.67.5A10 10 0 0022 12 10 10 0 0012 2z"/></svg>
+                    GitHub
+                </a>
+            </div>
         </div>
-    </div>
-    <div id="modal5" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal5')">&times;</span>
-            <h3>Web Application Penetration Testing</h3>
-            <p>Tested DVWA for SQL injection and XSS using Burp Suite, documenting findings and fixes.</p>
-        </div>
-    </div>
-    <div id="modal6" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal6')">&times;</span>
-            <h3>Active Directory Infrastructure & Automation</h3>
-            <p>Windows Server 2019, Active Directory, Group Policy Management, PowerShell, RSAT, DNS, DHCP, VirtualBox/VMware, Sysinternals tools</p>
-        </div>
-    </div>
-    <div id="modal7" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal7')">&times;</span>
-            <h3>AI-Powered Threat Detection System</h3>
-            <p>Developed an AI model using TensorFlow to detect anomalies in network traffic with 95% accuracy.</p>
-        </div>
-    </div>
-    <div id="modal8" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal8')">&times;</span>
-            <h3>AI-Driven Phishing Prevention</h3>
-            <p>Built an AI system using NLP to analyze email content and block phishing attempts with 98% precision.</p>
-        </div>
-    </div>
-    <div id="modal9" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal9')">&times;</span>
-            <h3>Automated Incident Response with AI</h3>
-            <p>Created an AI-driven system for real-time incident response and mitigation, reducing response time by 40%.</p>
-        </div>
-    </div>
-</section>
-{% endblock %}
+    </section>
+
+    <script src="/static/js/particle.js"></script>
+    <script src="/static/js/scripts.js"></script>
+    <script>
+        function toggleMenu() {
+            const burgerMenu = document.querySelector('.burger-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        }
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        const sections = document.querySelectorAll('.animate-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
