@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050608">
+  <meta name="description" content="Samuel Ogunlusi — IT support, cybersecurity and technical operations. Computer Science and MSc Cybersecurity graduate in Dublin. Selected work in SIEM, threat detection, ML security research and identity systems.">
+  <meta property="og:title" content="Samuel Ogunlusi | IT Support · Cybersecurity · Technical Operations">
+  <meta property="og:description" content="Building secure, reliable, people-first technology experiences.">
+  <title>Samuel Ogunlusi · IT Support, Cybersecurity & Technical Operations</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="readingProgress" aria-hidden="true"></div>
+<header class="site-header" id="top">
+  <div class="shell nav-content">
+    <a class="brand" href="#top" aria-label="Samuel Ogunlusi home"><span class="brand-mark">//</span><span>SAMUEL OGUNLUSI</span></a>
+    <nav class="desktop-links" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="outline-link" href="#projects">View Projects <span aria-hidden="true">↗</span></a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" type="button"><span></span><span></span></button>
+    </div>
+  </div>
+  <nav id="mobileMenu" class="mobile-links" aria-label="Mobile navigation" hidden>
+    <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+<main id="main">
+<!-- HERO: faithful to the exact approved first-screen layout. Original portrait pixels are untouched. -->
+<section class="hero" aria-labelledby="heroName">
+  <div class="hero-architecture" aria-hidden="true"></div>
+  <div class="shell hero-inner">
+    <div class="hero-copy">
+      <div class="section-kicker hero-kicker"><span>IT PROFESSIONAL</span><span class="kicker-rule"></span></div>
+      <h1 id="heroName">Samuel<br>Ogunlusi</h1>
+      <p class="hero-roles">IT Support <span>·</span> Cybersecurity <span>·</span> Technical Operations</p>
+      <p class="hero-statement">Building secure, reliable, people-first<br class="only-desktop"> technology experiences.</p>
+      <a href="#projects" class="light-button magnetic">View Projects <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="hero-portrait-wrap" aria-hidden="true">
+      <img class="hero-portrait" src="assets/samuel-exact-portrait.webp" alt="" fetchpriority="high" width="1000" height="1000">
+    </div>
+  </div>
+  <div class="hero-edge" aria-hidden="true"></div>
+</section>
+
+<!-- 01 MISSION -->
+<section class="mission content-section" id="mission" aria-labelledby="mission-title">
+  <div class="shell dividing-line mission-grid">
+    <span class="section-label reveal">01 / MISSION</span>
+    <div class="mission-content reveal">
+      <h2 id="mission-title">SOLVING REAL<br>TECHNOLOGY <span>PROBLEMS.</span></h2>
+      <p>I build, secure and support reliable systems, while turning complex challenges into practical, scalable solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ABOUT -->
+<section class="about content-section" id="about" aria-labelledby="about-heading">
+  <div class="shell dividing-line about-grid">
+    <div class="about-copy reveal">
+      <span class="section-label">02 / ABOUT</span>
+      <h2 id="about-heading">A TECHNOLOGY<br>PROFESSIONAL<br>WITH A BROAD<br>FOUNDATION.</h2>
+      <p>I hold a BSc in Computer Science and an MSc in Cybersecurity, with practical experience across IT support, security operations, cloud and infrastructure. I'm passionate about keeping systems secure, reliable and user-focused.</p>
+      <a class="light-button magnetic small-button" href="#experience">More About Me <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="about-visual reveal" aria-label="Close-up editorial photograph of a modern laptop"><img src="assets/approved-laptop.webp" alt="Blue-lit laptop keyboard with a dark industrial finish" loading="lazy" width="996" height="726"><div class="visual-sheen" aria-hidden="true"></div></div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS: exact 2x2 card layout and approved imagery -->
+<section class="projects content-section" id="projects" aria-labelledby="projects-heading">
+  <div class="shell dividing-line">
+    <div class="section-intro reveal"><h2 id="projects-heading">FEATURED<br>PROJECTS.</h2><p>Hands-on, real-world projects that showcase my skills in cybersecurity, system administration, automation and threat detection.</p></div>
+    <div class="project-grid">
+      <button class="project-card reveal" data-project="wazuh" aria-label="View Wazuh SIEM and AI-Assisted Alert Triage case study" type="button">
+        <img src="assets/project-1.webp" alt="Multiple cybersecurity monitoring dashboards" loading="lazy" width="1280" height="500">
+        <span class="project-overlay"><span class="project-title">Wazuh SIEM &amp; AI-Assisted<br>Alert Triage</span><span class="project-arrow" aria-hidden="true">↗</span><span class="project-tags">SIEM <b>/</b> THREAT DETECTION <b>/</b> AUTOMATION</span></span><span class="project-glint" aria-hidden="true"></span>
+      </button>
+      <button class="project-card reveal" data-project="opencanary" aria-label="View OpenCanary Honeypot and Wazuh Correlation case study" type="button">
+        <img src="assets/project-2.webp" alt="Data centre racks illuminated by blue network status lights" loading="lazy" width="1280" height="500">
+        <span class="project-overlay"><span class="project-title">OpenCanary Honeypot &amp;<br>Wazuh Correlation</span><span class="project-arrow" aria-hidden="true">↗</span><span class="project-tags">HONEYPOT <b>/</b> SIEM <b>/</b> THREAT INTELLIGENCE</span></span><span class="project-glint" aria-hidden="true"></span>
+      </button>
+      <button class="project-card reveal" data-project="gadm" aria-label="View ML-Based DDoS Detection research case study" type="button">
+        <img src="assets/project-3.webp" alt="Python network security detection code in a dark code editor" loading="lazy" width="1280" height="500">
+        <span class="project-overlay"><span class="project-title">ML-Based DDoS Detection</span><span class="project-arrow" aria-hidden="true">↗</span><span class="project-tags">PYTHON <b>/</b> MACHINE LEARNING <b>/</b> NETWORK SECURITY</span></span><span class="project-glint" aria-hidden="true"></span>
+      </button>
+      <button class="project-card reveal" data-project="windows" aria-label="View Windows Server and Active Directory Lab case study" type="button">
+        <img src="assets/project-4.webp" alt="Glowing blue Windows desktop against a black background" loading="lazy" width="1280" height="500">
+        <span class="project-overlay"><span class="project-title">Windows Server &amp;<br>Active Directory Lab</span><span class="project-arrow" aria-hidden="true">↗</span><span class="project-tags">WINDOWS SERVER <b>/</b> ACTIVE DIRECTORY <b>/</b> IDENTITY</span></span><span class="project-glint" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CORE COMPETENCIES -->
+<section class="skills content-section" id="skills" aria-labelledby="skills-heading">
+  <div class="shell dividing-line">
+    <div class="section-intro reveal"><h2 id="skills-heading">CORE<br>COMPETENCIES.</h2><p>A practical mix of IT operations, security and cloud skills, built through real experience and applied projects.</p></div>
+    <div class="skills-grid">
+      <div class="skill-item reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M12 27H9a7 7 0 0 1-1-14 12 12 0 0 1 23 4 5.4 5.4 0 0 1 0 10h-4M13 32v-7m14 7v-7M13 32h14"/></svg><span>IT Support &amp;<br>Service Operations</span></div>
+      <div class="skill-item reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 32 10v11c0 9-6 13-12 16C14 34 8 30 8 21V10Z"/><path d="m15 20 4 4 7-8"/></svg><span>Security Operations<br>&amp; Threat Detection</span></div>
+      <div class="skill-item reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="m20 4 15 9-15 9L5 13Zm-15 17 15 9 15-9M5 28l15 9 15-9"/></svg><span>Cloud &amp;<br>Infrastructure</span></div>
+      <div class="skill-item reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="6" width="28" height="20" rx="1"/><path d="M20 26v8M12 34h16"/></svg><span>Identity &amp;<br>Access Management</span></div>
+      <div class="skill-item reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="m15 12-9 8 9 8m10-16 9 8-9 8M23 8l-6 24"/></svg><span>Automation<br>&amp; Scripting</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience content-section" id="experience" aria-labelledby="experience-heading">
+  <div class="shell dividing-line">
+    <div class="section-intro reveal"><h2 id="experience-heading">PROFESSIONAL<br>EXPERIENCE.</h2><p>Hands-on experience delivering IT support, user management and operational improvements in fast-paced environments.</p></div>
+    <div class="timeline" role="list">
+      <button class="timeline-row reveal" type="button" data-experience="enl" role="listitem" aria-expanded="false"><span class="timeline-dot"></span><span class="timeline-main"><strong>IT Support Technician</strong><i>ENL Consortium Limited · Abuja, Nigeria</i><span class="timeline-detail" hidden>Delivered first- and second-line Windows and network support for 50+ users, supported Active Directory administration and streamlined onboarding work through PowerShell automation.</span></span><time datetime="2023-05">May 2023 – Oct 2023</time><span class="timeline-arrow" aria-hidden="true">↗</span></button>
+      <button class="timeline-row reveal" type="button" data-experience="niit" role="listitem" aria-expanded="false"><span class="timeline-dot"></span><span class="timeline-main"><strong>Cybersecurity Associate</strong><i>NIIT Fortesoft Systems · Lagos, Nigeria</i><span class="timeline-detail" hidden>Investigated Windows/Linux security events and network connectivity issues; used Python and Bash for log processing and prepared technical reports.</span></span><time datetime="2024-09">Sep 2024 – Aug 2025</time><span class="timeline-arrow" aria-hidden="true">↗</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education content-section" id="education" aria-labelledby="education-heading">
+  <div class="shell dividing-line">
+    <div class="section-intro reveal"><h2 id="education-heading">EDUCATION.</h2><p>A strong academic foundation in computing and cybersecurity.</p></div>
+    <div class="timeline education-timeline" role="list">
+      <div class="timeline-row reveal" role="listitem"><span class="timeline-dot"></span><span class="timeline-main"><strong>MSc Cybersecurity</strong><i>Dublin Business School · First Class Honours</i></span><time>2025 – 2026</time></div>
+      <div class="timeline-row reveal" role="listitem"><span class="timeline-dot"></span><span class="timeline-main"><strong>BSc Computer Science</strong><i>Caleb University, Lagos · Upper Second Class (CGPA 4.15/5.00)</i></span><time>2020 – 2024</time></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-labelledby="contact-heading">
+  <canvas id="waveCanvas" aria-hidden="true"></canvas>
+  <div class="contact-wash" aria-hidden="true"></div>
+  <div class="shell contact-inner"><div class="contact-copy reveal"><span class="section-label">LET'S WORK TOGETHER</span><h2 id="contact-heading">INTERESTED IN<br>WORKING TOGETHER?</h2><p>I'm open to IT support, security operations and infrastructure opportunities. Let's connect and explore how I can contribute to your team.</p><a href="mailto:samuelogunlusi21@gmail.com?subject=Portfolio%20enquiry" class="light-button magnetic small-button">Get in Touch <span aria-hidden="true">↗</span></a></div></div>
+</section>
+</main>
+<footer class="footer"><div class="shell footer-inner"><a href="#top" class="footer-brand">SAMX.</a><nav aria-label="Footer navigation"><a href="#top">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav><div class="social-links"><a href="https://www.linkedin.com/in/samuel-ogunlusi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8v12M4 4v.3M10 20V8m0 5a5 5 0 0 1 10 0v7"/></svg></a><a href="https://github.com/SamXl-Codes" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 2-6-2-7-2m16 4v-3a3 3 0 0 0-.8-2.3 7 7 0 1 0-10.4 0A3 3 0 0 0 6 18v3m13-18v5m-14-5v5"/></svg></a><a href="mailto:samuelogunlusi21@gmail.com" aria-label="Email Samuel"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="1"/><path d="m2 6 10 7 10-7"/></svg></a></div></div></footer>
+
+<dialog id="projectDialog" class="project-dialog" aria-labelledby="dialogTitle"><div class="dialog-panel"><button class="dialog-close" id="dialogClose" aria-label="Close project details" type="button">×</button><span id="dialogIndex" class="dialog-index"></span><h2 id="dialogTitle"></h2><p id="dialogLead" class="dialog-lead"></p><div class="dialog-columns"><section><h3>THE CHALLENGE</h3><p id="dialogChallenge"></p></section><section><h3>THE IMPLEMENTATION</h3><p id="dialogImplementation"></p></section><section><h3>THE OUTCOME</h3><p id="dialogOutcome"></p></section></div><div id="dialogTech" class="dialog-tech"></div><div class="dialog-actions"><a href="https://github.com/SamXl-Codes" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a><button id="dialogBack" type="button">Back to projects ↑</button></div><p class="dialog-disclaimer">Project visuals are editorial illustrations. Detailed artefacts and public repositories can be linked once approved for release.</p></div></dialog>
+<div class="motion-toolbar"><button id="motionToggle" type="button" aria-label="Pause animations" aria-pressed="false"><span aria-hidden="true">Ⅱ</span> <span class="motion-text">Pause motion</span></button></div>
+</body>
+</html>
