@@ -1,204 +1,48 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07090c">
-  <meta name="description" content="Samuel Ogunlusi — IT support, cybersecurity and technical operations. A premium portfolio covering security operations, IT support, cloud, infrastructure and software projects.">
-  <meta property="og:title" content="Samuel Ogunlusi | IT Support · Cybersecurity · Technical Operations">
-  <meta property="og:description" content="A curated portfolio of cybersecurity, IT support, cloud and software projects.">
-  <title>Samuel Ogunlusi · IT Support, Cybersecurity & Technical Operations</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    window.SAMX_PROJECTS = [{"id": "wazuh-siem-ai", "section": "A", "group": "Security Operations and Detection", "title": "Wazuh SIEM Endpoint Detection and AI-Assisted Alert Triage", "what": "Rebuilt endpoint monitoring and response for a 200-endpoint retail company scenario in an isolated VMware lab.", "stack": ["Wazuh 4.14.3", "Sysmon", "PowerShell Logging", "Windows 11", "Ubuntu", "Flask", "Python", "Ollama"], "did": "Wrote five custom MITRE ATT&CK-mapped detection rules, simulated attacks including SSH brute force, and built a Flask/Python workflow that sends alert evidence to a local LLM for severity summaries and approval-based response recommendations.", "result": "All five rules fired correctly with zero false positives. The SSH brute-force simulation produced 31 alerts, 1,263 normalised searchable fields and roughly 3-second triage response.", "repo": "https://github.com/SamXl-Codes/Wazuh-SIEM-Docker-Automation", "tags": ["SIEM", "Detection Engineering", "Incident Response", "Automation"], "featured": true}, {"id": "opencanary-wazuh", "section": "A", "group": "Security Operations and Detection", "title": "OpenCanary Honeypot with Wazuh Correlation", "what": "Deployed a honeypot to capture attacker behaviour and correlate it inside the SIEM.", "stack": ["OpenCanary 0.9.7", "Wazuh 4.14.5", "Ubuntu 24.04", "Custom JSON Decoder"], "did": "Ran decoy SSH, HTTP and SMB services, wrote a custom decoder and five frequency-based correlation rules, added AI enrichment and tuned alert thresholds.", "result": "Captured and analysed 897 alerts across SSH, HTTP and SMB scenarios.", "repo": "", "tags": ["Honeypot", "Correlation Rules", "Threat Hunting", "Log Parsing"], "featured": true}, {"id": "threat-hunting-bot", "section": "A", "group": "Security Operations and Detection", "title": "Autonomous Threat Hunting Bot Using LLM and Security Logs", "what": "Built an AI bot that reads system and network security logs, spots suspicious behaviour and produces human-readable threat reports.", "stack": ["Python", "LLM"], "did": "Designed the workflow for ingesting logs, summarising anomalies and presenting findings in a SOC-friendly reporting format.", "result": "Produced analyst-readable threat-hunting summaries from raw security evidence.", "repo": "https://github.com/SamXl-Codes/SamXl-Codes-Autonomous-Threat-Hunting-Bot-Using-LLM-Security-Logs", "tags": ["Threat Hunting", "LLM", "Security Automation", "Reporting"]}, {"id": "python-siem-analyzer", "section": "A", "group": "Security Operations and Detection", "title": "Python SIEM Log Analyzer", "what": "Developed a Python tool that scans Linux auth logs to detect failed SSH logins, brute-force attempts and privilege escalation signals.", "stack": ["Python", "Linux auth.log"], "did": "Implemented parsing and detection logic for suspicious login patterns and escalation attempts.", "result": "Created a lightweight SOC automation utility for quick Linux log triage.", "repo": "https://github.com/SamXl-Codes/Python-SIEM-Log-Analyzer", "tags": ["Log Analysis", "Linux Security", "Detection Logic", "SOC Automation"], "featured": true}, {"id": "gadm-ddos", "section": "A", "group": "Security Operations and Detection", "title": "ML DDoS Detection (MSc Dissertation, GADM)", "what": "Researched machine-learning DDoS detection with explainability and governance mapping.", "stack": ["Python", "ML Models", "CIC-DDoS2019", "BoT-IoT", "SHAP", "LIME"], "did": "Evaluated five machine-learning models, used SHAP and LIME for explainability, and mapped outputs to NIST CSF 2.0 and ISO/IEC 27001 controls.", "result": "Achieved 99.7% detection accuracy with explainable outputs and a governance-aligned mapping framework.", "repo": "", "tags": ["Machine Learning", "Network Security", "Explainable AI", "Governance"], "featured": true}, {"id": "nid-ml", "section": "A", "group": "Security Operations and Detection", "title": "Network Intrusion Detection with Machine Learning", "what": "Built ML models to classify network traffic as normal or malicious.", "stack": ["Python", "Jupyter Notebook"], "did": "Prepared traffic data, trained classifiers and evaluated model behaviour on intrusion detection tasks.", "result": "Created a practical intrusion-detection notebook focused on machine-learning workflows.", "repo": "https://github.com/SamXl-Codes/Network-Intrusion-Detection-with-machine-learning", "tags": ["NIDS", "Machine Learning", "Traffic Analysis"]}, {"id": "malware-detection", "section": "A", "group": "Security Operations and Detection", "title": "AI-Powered Malware Detection and Classification System", "what": "Built a malware-classification system with a web interface for instant verdicts on uploaded samples or extracted features.", "stack": ["Machine Learning", "Web Interface"], "did": "Designed the end-to-end classification flow from upload to model verdict and result presentation.", "result": "Produced a prototype for rapid malware assessment and classification.", "repo": "https://github.com/SamXl-Codes/AI-Powered-Malware-Detection-Classification-System", "tags": ["Malware Analysis", "ML Security", "Web App"]}, {"id": "phishing-detection", "section": "A", "group": "Security Operations and Detection", "title": "AI-Powered Phishing Detection and Prevention System", "what": "Created an ML-driven system to analyse emails, URLs and web content for phishing behaviour.", "stack": ["Machine Learning", "URL Analysis", "Email Analysis"], "did": "Modelled a real-time workflow for inspecting suspicious content and producing phishing decisions.", "result": "Built a prototype focused on phishing detection and prevention use cases.", "repo": "https://github.com/SamXl-Codes/AI-Powered-Phishing-Detection-and-Prevention-System", "tags": ["Phishing Detection", "ML Security", "Email Security"]}, {"id": "forensics-investigation", "section": "A", "group": "Security Operations and Detection", "title": "Digital Forensics Investigation (Identity Theft Case)", "what": "Completed a court-style forensic investigation of a seized E01 disk image in a fraud case.", "stack": ["Autopsy", "Sleuth Kit", "FTK", "ExifTool", "John the Ripper"], "did": "Verified image integrity, enumerated users, recovered artefacts, performed metadata analysis, cracked passwords, built a timeline and preserved chain of custody.", "result": "Recovered incriminating emails, card number lists and fake ID images, and produced a full forensic report.", "repo": "", "tags": ["DFIR", "Evidence Handling", "Timeline Analysis"]}, {"id": "webgoat-appsec", "section": "B", "group": "Offensive Security and Application Security", "title": "WebGoat Application Security Assessment and Remediation", "what": "Performed full SAST and DAST testing on a vulnerable Java/Spring Boot application, then remediated and re-tested it.", "stack": ["SonarQube 9.9.8", "OWASP ZAP 2.17.0", "Java", "Spring Boot"], "did": "Found SQL injection, XXE, hardcoded credentials and weak PRNG usage; fixed the underlying issues in source code and rebuilt the application.", "result": "All four vulnerabilities were remediated and the SonarQube Quality Gate passed after rescanning.", "repo": "", "tags": ["AppSec", "SAST", "DAST", "Secure Coding"], "featured": true}, {"id": "multi-stage-attack", "section": "B", "group": "Offensive Security and Application Security", "title": "Multi-Stage Attack Simulation (FLYEfit Case)", "what": "Simulated a multi-stage attack chain against a fictional gym company in a controlled lab.", "stack": ["Recon-ng", "SEToolkit", "Kali Linux", "Web Cloning"], "did": "Performed OSINT recon, spear-phishing with credential harvesting, cloned a login page and delivered a payload to achieve root access and persistence.", "result": "Produced a practical demonstration of the modern attack lifecycle in a controlled environment.", "repo": "", "tags": ["Red Teaming", "Social Engineering", "OSINT"]}, {"id": "dvwa-osint", "section": "B", "group": "Offensive Security and Application Security", "title": "OSINT Reconnaissance and DVWA Penetration Test (Supermacs Case)", "what": "Combined passive reconnaissance of a real company's public footprint with DVWA exploitation in a lab.", "stack": ["WHOIS", "DNS Enumeration", "Cloudflare Mapping", "DVWA", "Meterpreter"], "did": "Mapped domains and cloud providers, exploited DVWA command injection to gain a Meterpreter shell and wrote remediation guidance.", "result": "Delivered both recon findings and hands-on exploitation evidence with remediation recommendations.", "repo": "", "tags": ["OSINT", "Pentesting", "Command Injection"]}, {"id": "server-security-ctf", "section": "B", "group": "Offensive Security and Application Security", "title": "Server Security CTF (24-hour)", "what": "Completed a 24-hour live server security assessment challenge.", "stack": ["Ubuntu", "Scanning", "Manual Verification"], "did": "Combined automated scanning with manual verification during a time-boxed engagement.", "result": "Captured all five flags on the Ubuntu target.", "repo": "", "tags": ["CTF", "Server Security", "Hands-on Assessment"]}, {"id": "moveit-analysis", "section": "B", "group": "Offensive Security and Application Security", "title": "MOVEit Supply Chain Breach Analysis", "what": "Analysed the MOVEit Transfer breach from technical, organisational and societal perspectives.", "stack": ["Threat Intel", "GRC", "Case Analysis"], "did": "Reviewed CVE-2023-34362, the SQL injection path, exploitation impact and downstream organisational consequences.", "result": "Produced a structured case study of a major supply-chain breach and its risk implications.", "repo": "", "tags": ["Threat Intelligence", "Third-Party Risk", "GRC"]}, {"id": "aws-devops-pipeline", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "AWS DevOps Pipeline (Terraform, Ansible, GitHub Actions)", "what": "Built a fully automated deployment pipeline for a Flask portfolio website on AWS.", "stack": ["AWS", "Terraform", "Ansible", "GitHub Actions", "Nginx", "Gunicorn", "Docker"], "did": "Provisioned networking and EC2 resources with Terraform, configured services with Ansible, and automated plan/apply and deployment through GitHub Actions while debugging real CI issues.", "result": "Delivered an idempotent, repeatable AWS deployment pipeline and brought the site live on AWS.", "repo": "https://github.com/SamXl-Codes/devops-aws-terraform-ansible-cicd", "tags": ["AWS", "IaC", "CI/CD", "Linux"], "featured": true}, {"id": "windows-ad-lab", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Windows Server and Active Directory Support Lab", "what": "Built a Windows Server domain environment from scratch.", "stack": ["Windows Server", "Active Directory", "DNS", "Group Policy", "VMware"], "did": "Created users and OUs, configured Group Policy and access controls, joined clients to the domain and tested logins and troubleshooting flows.", "result": "Produced a solid lab for AD administration, endpoint support and user-management scenarios.", "repo": "", "tags": ["Active Directory", "Windows Support", "User Management"], "featured": true}, {"id": "intune-endpoint", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Intune Endpoint Deployment and Patch Compliance", "what": "Created a modern endpoint-management lab with Microsoft Intune.", "stack": ["Microsoft Intune", "Windows 10/11"], "did": "Handled device enrolment, app deployment, update rings and compliance reporting workflows.", "result": "Built a practical environment for endpoint deployment and patch-compliance testing.", "repo": "", "tags": ["Intune", "Endpoint Management", "Compliance"]}, {"id": "servicenow-itsm", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "ServiceNow ITSM, SLAs and Knowledge Base", "what": "Set up service-desk workflows in ServiceNow.", "stack": ["ServiceNow"], "did": "Configured incident queues, priority and escalation rules, SLA dashboards, knowledge articles and repeat-incident analysis.", "result": "Created a strong service-desk workflow model aligned with ITIL-style support operations.", "repo": "", "tags": ["ServiceNow", "Incident Management", "SLA Monitoring"]}, {"id": "endpoint-security", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Endpoint Security and Asset Lifecycle", "what": "Worked on endpoint hardening, device controls and asset tracking.", "stack": ["BitLocker", "Microsoft Defender"], "did": "Implemented encryption and AV controls, remote support processes, inventory handling, replacement planning and SOP-style documentation.", "result": "Strengthened endpoint governance and lifecycle visibility through structured controls and documentation.", "repo": "", "tags": ["Endpoint Security", "Asset Management", "Documentation"]}, {"id": "multi-site-network", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Multi-Site Network Design and Packet Analysis", "what": "Designed and built a network for three departments across Student, Staff and Finance environments.", "stack": ["Cisco Packet Tracer", "Cisco IOS", "Wireshark"], "did": "Applied VLSM subnetting, configured three routers with inter-site routing and performed packet capture and traffic analysis.", "result": "Delivered a functioning multi-site topology grounded in CCNA-level routing and subnetting practice.", "repo": "", "tags": ["Networking", "Routing", "Wireshark"]}, {"id": "network-systems-validation", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Network and Systems Validation Lab", "what": "Built and tested network topologies in a mixed lab environment.", "stack": ["VMware", "Cisco Packet Tracer", "OPNsense", "Wireshark", "IPv6", "VLANs"], "did": "Diagnosed DNS, DHCP, VPN and VLAN faults while validating multiple networking scenarios.", "result": "Created a flexible test lab for systems validation and fault diagnosis.", "repo": "", "tags": ["VLANs", "IPv6", "Network Troubleshooting"]}, {"id": "linux-admin", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Linux Server Administration and Automation", "what": "Worked across Linux administration and Bash automation tasks.", "stack": ["Linux", "Bash", "Git", "Monitoring"], "did": "Handled user access, security hardening, monitoring, deployment scripts and isolated-environment exercises across multiple Linux repos.", "result": "Built a broad Linux administration portfolio spanning automation, operations and troubleshooting.", "repo": "https://github.com/SamXl-Codes/Linux-Server-Administration", "tags": ["Linux", "Bash", "Server Administration"]}, {"id": "bcdr-hospital", "section": "C", "group": "IT Support, Infrastructure and Cloud", "title": "Business Continuity and Disaster Recovery Plan (Dublin City Hospital)", "what": "Produced a full BCDR plan for a hospital environment.", "stack": ["ISO 22301:2019", "GDPR", "Risk Assessment"], "did": "Performed business impact analysis, risk assessment, recovery objective planning and recovery testing procedures using the HSE Conti ransomware incident as a threat model.", "result": "Delivered a structured resilience and disaster-recovery plan aligned with industry standards.", "repo": "", "tags": ["BCDR", "Resilience", "Compliance"]}, {"id": "workflowx", "section": "D", "group": "Software and AI Builds", "title": "WorkFlowX HR and Employee Management System", "what": "Built a full HR web application with workflows for employee operations.", "stack": ["Flask", "SQLAlchemy", "SQL Database", "GitHub Actions"], "did": "Implemented eight ORM models, MVC plus repository architecture, QR attendance, payroll, PDF payslips, leave workflows, messaging and CSV import.", "result": "Shipped 66 automated tests with 100% pass rate and an accompanying CI/CD pipeline.", "repo": "https://github.com/SamXl-Codes/Employee-Management-System", "tags": ["Flask", "SQLAlchemy", "Testing", "HR Tech"], "featured": true}, {"id": "clouddrive", "section": "D", "group": "Software and AI Builds", "title": "CloudDrive Secure Cloud Storage", "what": "Built a secure cloud-storage prototype with end-to-end encryption.", "stack": ["Python"], "did": "Designed the system so uploaded files remain unreadable to the backend and accessible only to the authenticated owner.", "result": "Created a privacy-focused storage prototype centred on secure file access.", "repo": "https://github.com/SamXl-Codes/CloudDrive-Cloud-Storage-System-", "tags": ["Cloud Storage", "Encryption", "Python"]}, {"id": "corvint-ai", "section": "D", "group": "Software and AI Builds", "title": "CORVINT AI Voice Assistant", "what": "Built a desktop voice assistant with a heads-up display.", "stack": ["Python", "Groq LLM", "tkinter"], "did": "Created the assistant interface and workflow for voice-driven interaction.", "result": "Produced an AI desktop tool with a conversational interface and HUD-style experience.", "repo": "", "tags": ["Voice Assistant", "Python", "LLM"]}, {"id": "programming-projects", "section": "D", "group": "Software and AI Builds", "title": "Programming Projects (C# and Python)", "what": "Built a collection of C# and Python programming projects.", "stack": ["C#", "Python", "SQLite", "BeautifulSoup4"], "did": "Created a contact book, file-extension manager, TCP client-server admissions system and a hotel web scraper returning 112 rows.", "result": "Showcased broad software-development fundamentals across OOP, networking, databases and scraping.", "repo": "https://github.com/SamXl-Codes/B9CY108-CA1-Advanced-Programming", "tags": ["C#", "Python", "SQLite", "Scraping"]}, {"id": "securitygpt-agents", "section": "D", "group": "Software and AI Builds", "title": "SecurityGPT Agents and AI Job Search Framework", "what": "Created AI-focused experimentation projects around security workflows and job-search automation.", "stack": ["AI Agents", "Automation"], "did": "Built repository-based frameworks exploring agentic workflows and AI-assisted searching.", "result": "Extended practical experimentation with AI applications and automation use cases.", "repo": "https://github.com/SamXl-Codes/SecurityGPT-Agents", "tags": ["AI Agents", "Automation", "Experimentation"]}];
-    window.SAMX_SECTION_META = {"A": {"title": "Security Operations and Detection", "summary": "Detection engineering, SIEM, DFIR and ML-based security analysis."}, "B": {"title": "Offensive Security and Application Security", "summary": "Vulnerability discovery, remediation, attack simulation and breach analysis."}, "C": {"title": "IT Support, Infrastructure and Cloud", "summary": "Service operations, endpoint management, networks, Active Directory and cloud automation."}, "D": {"title": "Software and AI Builds", "summary": "Software engineering, workflow systems, encryption and AI-assisted tools."}};
-    window.SAMX_EXPERIENCE = [{"title": "Cybersecurity Analyst Intern", "company": "Shef Labs Cyber Academy \u00b7 Dublin, Ireland", "dates": "Jul 2026 \u2013 Present", "detail": "Support security-operations learning and practical investigations across SOC fundamentals, networking, cloud, Windows, Linux and threat monitoring."}, {"title": "Cybersecurity Associate", "company": "NIIT Fortesoft Systems \u00b7 Lagos, Nigeria", "dates": "Sep 2024 \u2013 Aug 2025", "detail": "Worked with cybersecurity training, log review, network analysis and practical troubleshooting using Python, Bash and security tools."}, {"title": "IT Support Technician", "company": "ENL Consortium Limited \u00b7 Abuja, Nigeria", "dates": "May 2023 \u2013 Oct 2023", "detail": "Delivered first- and second-line IT support for 50+ users, assisted with Active Directory and reduced onboarding effort by 30% through PowerShell automation."}];
-    window.SAMX_CERTS = ["CompTIA Security+ (2026)", "Cisco CCNA (2025)", "Cisco CyberOps Associate (2024)", "Microsoft Azure Fundamentals AZ-900 (2025)", "AWS Certified Cloud Practitioner (2025)", "Splunk Core Certified User (2026)", "Associate of ISC2", "Google: Using Python to Interact with the Operating System"];
-    window.SAMX_SKILLS = ["IT Support & Service Desk", "Security Operations & Detection", "Cloud & Infrastructure", "Active Directory & Identity", "Endpoint Management & Compliance", "Networking & Troubleshooting", "Automation & Scripting", "Machine Learning for Security"];
-  </script>
-  <script defer src="app.js"></script>
-</head>
-<body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <div id="readingProgress" aria-hidden="true"></div>
-  <header class="site-header" id="top">
-    <div class="shell nav-content">
-      <a class="brand" href="#top" aria-label="Samuel Ogunlusi home"><span class="brand-mark">//</span><span>SAMUEL OGUNLUSI</span></a>
-      <nav class="desktop-links" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#featured">Featured</a>
-        <a href="#project-directory">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav-actions">
-        <a class="outline-link" href="#project-directory">Project Directory <span aria-hidden="true">↗</span></a>
-        <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" type="button"><span></span><span></span></button>
-      </div>
-    </div>
-    <nav id="mobileMenu" class="mobile-links" aria-label="Mobile navigation" hidden>
-      <a href="#about">About</a>
-      <a href="#featured">Featured</a>
-      <a href="#project-directory">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-  <main id="main">
-    <section class="hero" aria-labelledby="heroName">
-      <div class="hero-architecture" aria-hidden="true"></div>
-      <div class="shell hero-inner">
-        <div class="hero-copy reveal">
-          <div class="section-kicker hero-kicker"><span>IT PROFESSIONAL</span><span class="kicker-rule"></span></div>
-          <h1 id="heroName">Samuel<br>Ogunlusi</h1>
-          <p class="hero-roles">IT Support <span>·</span> Cybersecurity <span>·</span> Technical Operations <span>·</span> Computer Science Graduate</p>
-          <p class="hero-statement">Building secure, reliable and people-first technology experiences across support, security, infrastructure and software.</p>
-          <div class="hero-actions">
-            <a href="#featured" class="light-button magnetic">View Featured Work <span aria-hidden="true">→</span></a>
-            <a href="#project-directory" class="ghost-button">Browse All Projects</a>
-          </div>
-          <div class="hero-stats reveal" aria-label="Portfolio summary">
-            <div><strong>28</strong><span>Projects documented</span></div>
-            <div><strong>4</strong><span>Core focus areas</span></div>
-            <div><strong>3</strong><span>Professional roles</span></div>
-          </div>
-        </div>
-        <div class="hero-portrait-wrap reveal">
-          <div class="portrait-shell">
-            <img class="hero-portrait" src="assets/samuel-exact-portrait.webp" alt="Portrait of Samuel Ogunlusi" fetchpriority="high" width="1254" height="1254">
-          </div>
-        </div>
-      </div>
-      <div class="hero-edge" aria-hidden="true"></div>
-    </section>
-
-    <section class="mission content-section" id="mission" aria-labelledby="mission-title">
-      <div class="shell dividing-line mission-grid">
-        <span class="section-label reveal">01 / MISSION</span>
-        <div class="mission-content reveal">
-          <h2 id="mission-title">SOLVING REAL <span>TECHNOLOGY</span> PROBLEMS.</h2>
-          <p>I design, secure and support reliable systems, while translating complex technical work into practical outcomes recruiters and hiring managers can quickly understand.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about content-section" id="about" aria-labelledby="about-heading">
-      <div class="shell dividing-line about-grid">
-        <div class="about-copy reveal">
-          <span class="section-label">02 / ABOUT</span>
-          <h2 id="about-heading">A BROAD, MODERN TECHNOLOGY FOUNDATION.</h2>
-          <p>I hold a BSc in Computer Science and an MSc in Cybersecurity, with applied work spanning IT support, security operations, infrastructure, automation and software builds. This portfolio is intentionally structured so both cybersecurity recruiters and IT support recruiters can quickly find the work most relevant to them.</p>
-          <div class="about-highlights">
-            <span>First Class Honours MSc Cybersecurity</span>
-            <span>BSc Computer Science</span>
-            <span>Dublin-based</span>
-            <span>Open to IT Support, SOC and Infrastructure roles</span>
-          </div>
-        </div>
-        <div class="about-visual reveal"><img src="assets/approved-laptop.webp" alt="Editorial laptop close-up" loading="lazy" width="996" height="726"><div class="visual-sheen" aria-hidden="true"></div></div>
-      </div>
-    </section>
-
-    <section class="projects featured content-section" id="featured" aria-labelledby="featured-heading">
-      <div class="shell dividing-line">
-        <div class="section-intro reveal">
-          <h2 id="featured-heading">FEATURED PROJECTS.</h2>
-          <p>A selection of standout work across security operations, application security, cloud automation, IT support and software engineering.</p>
-        </div>
-        <div id="featuredGrid" class="project-grid"></div>
-      </div>
-    </section>
-
-    <section class="projects directory content-section" id="project-directory" aria-labelledby="directory-heading">
-      <div class="shell dividing-line">
-        <div class="section-intro reveal">
-          <h2 id="directory-heading">PROJECT DIRECTORY.</h2>
-          <p>Projects are grouped into clear categories so hiring teams can quickly explore the work most relevant to them. Public repositories are linked wherever available.</p>
-        </div>
-        <div id="projectSections" class="project-sections"></div>
-      </div>
-    </section>
-
-    <section class="skills content-section" id="skills" aria-labelledby="skills-heading">
-      <div class="shell dividing-line">
-        <div class="section-intro reveal"><h2 id="skills-heading">CORE COMPETENCIES.</h2><p>A practical blend of support, security, cloud and development capability built through real projects and applied labs.</p></div>
-        <div id="skillsGrid" class="skills-grid"></div>
-      </div>
-    </section>
-
-    <section class="experience content-section" id="experience" aria-labelledby="experience-heading">
-      <div class="shell dividing-line">
-        <div class="section-intro reveal"><h2 id="experience-heading">PROFESSIONAL EXPERIENCE.</h2><p>Experience across IT support and cybersecurity with a strong emphasis on user support, operational reliability and structured troubleshooting.</p></div>
-        <div id="experienceList" class="timeline" role="list"></div>
-      </div>
-    </section>
-
-    <section class="education content-section" id="education" aria-labelledby="education-heading">
-      <div class="shell dividing-line">
-        <div class="section-intro reveal"><h2 id="education-heading">EDUCATION & CERTIFICATIONS.</h2><p>Academic depth combined with industry certifications and technical self-development.</p></div>
-        <div class="education-layout">
-          <div class="timeline education-timeline" role="list">
-            <div class="timeline-row reveal" role="listitem"><span class="timeline-dot"></span><span class="timeline-main"><strong>MSc Cybersecurity</strong><i>Dublin Business School · First Class Honours</i></span><time>2025 – 2026</time></div>
-            <div class="timeline-row reveal" role="listitem"><span class="timeline-dot"></span><span class="timeline-main"><strong>BSc Computer Science</strong><i>Caleb University, Lagos · Upper Second Class (CGPA 4.15/5.00)</i></span><time>2020 – 2024</time></div>
-          </div>
-          <div class="cert-panel reveal">
-            <h3>Selected Certifications</h3>
-            <div id="certificationsList" class="cert-list"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact" aria-labelledby="contact-heading">
-      <canvas id="waveCanvas" aria-hidden="true"></canvas>
-      <div class="contact-wash" aria-hidden="true"></div>
-      <div class="shell contact-inner">
-        <div class="contact-copy reveal">
-          <span class="section-label">LET'S WORK TOGETHER</span>
-          <h2 id="contact-heading">INTERESTED IN WORKING TOGETHER?</h2>
-          <p>I'm open to IT support, service desk, desktop support, cybersecurity, SOC and infrastructure opportunities. If you want someone who combines technical depth with practical execution, I'd love to connect.</p>
-          <div class="contact-links">
-            <a href="mailto:samuelogunlusi21@gmail.com?subject=Portfolio%20enquiry" class="light-button magnetic small-button">Get in Touch <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/SamXl-Codes" class="ghost-button" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="shell footer-inner">
-      <a href="#top" class="footer-brand">SAMX.</a>
-      <nav aria-label="Footer navigation"><a href="#top">Home</a><a href="#about">About</a><a href="#featured">Featured</a><a href="#project-directory">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
-      <div class="social-links"><a href="https://www.linkedin.com/in/samuel-ogunlusi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a><a href="https://github.com/SamXl-Codes" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a><a href="mailto:samuelogunlusi21@gmail.com" aria-label="Email Samuel">Email</a></div>
-    </div>
-  </footer>
-
-  <dialog id="projectDialog" class="project-dialog" aria-labelledby="dialogTitle">
-    <div class="dialog-panel">
-      <button class="dialog-close" id="dialogClose" aria-label="Close project details" type="button">×</button>
-      <span id="dialogIndex" class="dialog-index"></span>
-      <h2 id="dialogTitle"></h2>
-      <p id="dialogLead" class="dialog-lead"></p>
-      <div class="dialog-columns">
-        <section><h3>WHAT</h3><p id="dialogWhat"></p></section>
-        <section><h3>WHAT I DID</h3><p id="dialogImplementation"></p></section>
-        <section><h3>RESULT</h3><p id="dialogOutcome"></p></section>
-      </div>
-      <div id="dialogTech" class="dialog-tech"></div>
-      <div class="dialog-actions">
-        <a href="#" id="dialogRepo" target="_blank" rel="noopener noreferrer">View repository ↗</a>
-        <button id="dialogBack" type="button">Back to projects ↑</button>
-      </div>
-    </div>
-  </dialog>
-
-  <div class="motion-toolbar"><button id="motionToggle" type="button" aria-label="Pause animations" aria-pressed="false"><span aria-hidden="true">Ⅱ</span> <span class="motion-text">Pause motion</span></button></div>
-</body>
-</html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07090e">
+<meta name="description" content="Samuel Ogunlusi: cybersecurity and IT engineer, MSc Cybersecurity (First Class Honours) and BSc Computer Science. A curated portfolio of SOC, cloud, IT operations and software projects.">
+<meta property="og:title" content="Samuel Ogunlusi | Security, Systems & Software">
+<meta property="og:description" content="Reliable systems. Stronger security. A portfolio of hands-on engineering and security projects.">
+<title>Samuel Ogunlusi | Security, Systems & Software</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script defer src="projects.js"></script><script defer src="app.js"></script>
+</head><body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="progress-track" aria-hidden="true"><div id="progressFill"></div></div>
+<header class="site-header" id="top"><div class="shell header-inner">
+<a href="#top" class="logo" aria-label="Samuel Ogunlusi, home">SAMX<span class="logo-dot">.</span></a>
+<nav class="desktop-nav" aria-label="Primary navigation"><a href="#work">Selected work</a><a href="#projects">All projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+<div class="header-end"><a class="header-reach" href="mailto:samuelogunlusi21@gmail.com">Let's connect <span aria-hidden="true">↗</span></a><button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span></button></div>
+</div><nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden><a href="#work">Selected work</a><a href="#projects">All projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
+<main id="main">
+<section class="hero" aria-labelledby="heroTitle"><div class="hero-atmosphere" aria-hidden="true"></div><div class="shell hero-inner">
+<div class="hero-content"><div class="hero-kicker"><span class="status-dot"></span> SAMUEL OGUNLUSI <span class="kicker-slash">/</span> DUBLIN, IRELAND</div>
+<h1 id="heroTitle">Reliable systems.<br><em>Stronger security.</em></h1>
+<p class="hero-lead">IT support, cybersecurity and software engineering. I build practical technology solutions with reliability, security and people at the centre.</p>
+<div class="hero-cta"><a class="button button-light" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="text-link" href="#about">More about me <span aria-hidden="true">↓</span></a></div>
+<div class="hero-credentials"><span>MSc Cybersecurity <b>First Class Honours</b></span><span>BSc Computer Science <b>Upper Second Class</b></span></div>
+</div>
+<div class="hero-visual" aria-label="Portrait of Samuel Ogunlusi"><div class="hero-halo" aria-hidden="true"></div><div class="hero-orbit orbit-one" aria-hidden="true"></div><div class="hero-orbit orbit-two" aria-hidden="true"></div><img class="hero-portrait" src="assets/portrait.webp" alt="Samuel Ogunlusi in formal business attire" width="1254" height="1254" fetchpriority="high"></div>
+</div><div class="hero-bottom shell"><span>ENGINEERING / OPERATIONS / SECURITY</span><a href="#work" class="scroll-cue">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div></section>
+<section class="intro section-pad" aria-labelledby="introTitle"><div class="shell intro-grid"><div class="eyebrow">01 / WHAT I DO</div><div><h2 id="introTitle">Working at the intersection of <em>technology and trust.</em></h2><p>From keeping users productive to designing detection systems and deploying cloud infrastructure, my focus is the same: make complex technology understandable, dependable and secure.</p><div class="discipline-list"><span>Security operations</span><span>IT support & infrastructure</span><span>Cloud automation</span><span>Software development</span></div></div></div></section>
+<section class="featured section-pad" id="work" aria-labelledby="workTitle"><div class="shell"><div class="section-head"><div><div class="eyebrow">02 / SELECTED WORK</div><h2 id="workTitle">Selected <em>projects.</em></h2></div><p>Four case studies from different disciplines. Explore the architecture, implementation and results without losing yourself in endless scrolling.</p></div>
+<div id="featuredGrid" class="featured-grid" aria-live="polite"></div>
+<div class="featured-footer"><a class="text-link" href="#projects">Explore the full project library <span aria-hidden="true">↗</span></a></div></div></section>
+<section class="project-library section-pad" id="projects" aria-labelledby="projectsTitle"><div class="shell"><div class="section-head library-head"><div><div class="eyebrow">03 / PROJECT LIBRARY</div><h2 id="projectsTitle">The complete <em>archive.</em></h2></div><p>28 projects across security, offensive testing, infrastructure and software. Filter by your interests or search for a specific technology.</p></div>
+<div class="library-controls"><div class="filter-list" id="filterList" role="group" aria-label="Project category"><button type="button" class="filter active" data-filter="all" aria-pressed="true">All <span>28</span></button><button type="button" class="filter" data-filter="A" aria-pressed="false">Security ops</button><button type="button" class="filter" data-filter="B" aria-pressed="false">AppSec</button><button type="button" class="filter" data-filter="C" aria-pressed="false">IT & cloud</button><button type="button" class="filter" data-filter="D" aria-pressed="false">Software & AI</button></div><label class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="projectSearch" placeholder="Search by project or skill" autocomplete="off" aria-label="Search projects"></label></div>
+<div class="library-meta"><span id="projectCount">Showing selected projects</span><span class="library-hint">Open a project for details and links <span aria-hidden="true">↗</span></span></div>
+<div class="library-grid" id="projectGrid" aria-live="polite"></div><p id="noResults" class="empty-state" hidden>No projects match that search. Try another term or category.</p>
+<div class="load-more-wrap"><button class="button button-outline" id="loadMore" type="button">Show more projects <span aria-hidden="true">↓</span></button></div></div></section>
+<section class="about section-pad" id="about" aria-labelledby="aboutTitle"><div class="shell about-layout"><div><div class="eyebrow">04 / ABOUT</div><h2 id="aboutTitle">A foundation in computing.<br><em>A focus on security.</em></h2><p>I'm a Computer Science graduate with a First Class Honours MSc in Cybersecurity. My background brings together user-focused IT support, security operations, networking, cloud infrastructure and hands-on software engineering.</p><p>I value thoughtful documentation, troubleshooting that gets to the root cause, and engineering decisions that make systems safer and easier to maintain.</p><a href="https://github.com/SamXl-Codes" target="_blank" rel="noopener noreferrer" class="text-link">Explore my GitHub <span aria-hidden="true">↗</span></a></div>
+<div class="about-right"><div class="about-stat"><span>01</span><strong>MSc Cybersecurity</strong><small>Dublin Business School · First Class Honours · 2026</small></div><div class="about-stat"><span>02</span><strong>BSc Computer Science</strong><small>Caleb University · Second Class Upper · 2024</small></div><div class="about-stat"><span>03</span><strong>Professional experience</strong><small>IT Support Technician · Cybersecurity Associate · Cybersecurity Analyst Intern</small></div></div></div></section>
+<section class="experience section-pad" aria-labelledby="experienceTitle"><div class="shell"><div class="section-head slim"><div><div class="eyebrow">05 / BACKGROUND</div><h2 id="experienceTitle">Experience <em>&amp; impact.</em></h2></div></div><div class="experience-list"><article class="experience-row"><span class="experience-time">2026 – PRESENT</span><div><h3>Cybersecurity Analyst Intern</h3><p>Shef Labs Cyber Academy · Dublin</p></div><span class="experience-index">01</span></article><article class="experience-row"><span class="experience-time">2024 – 2025</span><div><h3>Cybersecurity Associate</h3><p>NIIT Fortesoft Systems · Lagos</p></div><span class="experience-index">02</span></article><article class="experience-row"><span class="experience-time">2023</span><div><h3>IT Support Technician</h3><p>ENL Consortium Limited · Abuja · Support for 50+ users</p></div><span class="experience-index">03</span></article></div></div></section>
+<section class="contact section-pad" id="contact" aria-labelledby="contactTitle"><div class="contact-glow" aria-hidden="true"></div><div class="shell contact-content"><div class="eyebrow">06 / CONNECT</div><h2 id="contactTitle">Let's build something <em>reliable.</em></h2><p>Open to roles in cybersecurity, IT support, cloud infrastructure and technical operations.</p><a class="button button-light" href="mailto:samuelogunlusi21@gmail.com?subject=Portfolio%20enquiry">Get in touch <span aria-hidden="true">↗</span></a></div></section>
+</main><footer class="footer"><div class="shell footer-inner"><a class="logo" href="#top">SAMX<span class="logo-dot">.</span></a><span>Samuel Ogunlusi · Dublin, Ireland</span><div><a href="https://github.com/SamXl-Codes" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/samuel-ogunlusi" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="mailto:samuelogunlusi21@gmail.com">Email ↗</a></div></div></footer>
+<dialog class="project-dialog" id="projectDialog" aria-labelledby="modalTitle"><div class="modal-top"><span id="modalArea" class="eyebrow"></span><button type="button" class="modal-close" id="modalClose" aria-label="Close project details">✕</button></div><div class="modal-scroll"><div class="modal-visual"><img id="modalImage" alt="" loading="lazy"></div><div class="modal-body"><h2 id="modalTitle"></h2><p class="modal-lead" id="modalLead"></p><div class="modal-detail-grid"><div><span class="modal-label">THE WORK</span><p id="modalWork"></p></div><div><span class="modal-label">THE OUTCOME</span><p id="modalResult"></p></div></div><div class="modal-tech" id="modalTech"></div><div class="modal-action" id="modalAction"></div><p class="disclaimer">Project artwork is illustrative. Source code and evidence are linked when publicly available. Lab scenarios are not production deployments.</p></div></div></dialog>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Samuel Ogunlusi","url":"https://my-portfolio-ziw5.vercel.app/","sameAs":["https://github.com/SamXl-Codes","https://www.linkedin.com/in/samuel-ogunlusi"],"jobTitle":"IT Support & Cybersecurity Professional"}</script>
+</body></html>
