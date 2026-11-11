@@ -1,17 +1,19 @@
-# SAMX Portfolio 2026
+# SAMX - Samuel Ogunlusi | Portfolio, 2026
 
-Responsive, static portfolio for Samuel Ogunlusi. Curated project directory grouped into Security Operations, AppSec, IT Infrastructure/Cloud and Software/AI.
+A static, responsive cybersecurity / IT infrastructure portfolio. All 28 public project entries (private client work excluded) are discoverable through filtering and search, with only six items initially shown to reduce mobile scrolling. Four selected projects appear as editorial cards near the top.
 
-## Run locally
+## Architecture
 
-Use a local static web server and open `index.html`.
+- `index.html`: semantic homepage, portfolio, modal, about and contact.
+- `projects.js`: structured project content, links and classification.
+- `app.js`: mobile navigation, filtering, pagination and case-study dialog.
+- `styles.css`: accessible responsive design and motion preferences.
+- `assets/art/`: original vector concept illustrations. **These are not screenshots of the applications.** Replace with genuine, cleared screenshots when available.
+- `assets/portrait.webp`: user-approved portrait from the earlier iteration.
+- `vercel.json`: static hosting configuration.
 
-## Deploy to Vercel
+No frameworks or build step are required. Open with a local HTTP server (`python -m http.server 8000`) or deploy the repository's root to Vercel as **Other / Static**. Keyboard-accessible interactions and reduced-motion defaults are implemented.
 
-Import this repository, select Framework Preset **Other**, keep the build command empty, and set Output Directory to `.`. The site consists only of static HTML, CSS, JavaScript, and assets.
+## Accuracy and publishing
 
-## Notes
-
-Project-cover SVGs are original **editorial illustrations**, not screenshots or proof of project execution. Only publicly released repos are linked. The contents are authored from the owner's supplied project list and should be confirmed against source evidence before submitting as a professional reference.
-
-Accessibility includes a keyboard-operable native project dialog, responsive navigation and reduced-motion preference support.
+All project descriptions are based on the user-provided project inventory. Some outcomes are user-reported lab results, not independently audited production results. Double-check the final details before sharing with employers. Third-party repository URLs are linked where the user provided them; no private fitness-client app appears.
